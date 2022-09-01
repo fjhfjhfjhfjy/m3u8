@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>m3u8播放器</title>
+
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+  
+</head>
+<body>
+  <h1 align=center>简单前端m3u8播放器</h1>
+  <p align=center>简单引用了video.js</p>
+  
+  <div align=center>
+  <video id="myVideo" class="video-js vjs-default-skin" controls preload="auto" width="640" height="268" 
+  data-setup='{}'>
+    <source src="[自填地址]" type="application/x-mpegURL">
+  </video>
+  </div>
+  </br>
+  <p align=center>
+  <input type="text" id="videourl" size="60" placeholder="m3u8视频链接" autocomplete="off" autofocus="">
+  </p>
+  <div class="qiehuan" style="width:100px;height: 40px;background: red;margin:0 auto;line-height: 40px;color:#fff;text-align: center">切换视频
+  </div>
+
+ </body>
+ 
+ <script>
+      // videojs 简单使用
+    var myVideo = videojs('myVideo', {
+        bigPlayButton: true,
+        textTrackDisplay: false,
+        posterImage: false,
+        errorDisplay: false,
+    })
+    myVideo.play()
+	
+	
+    var changeVideo = function (vdoSrc) {
+        if (/\.m3u8$/.test(vdoSrc)) { //判断视频源是否是m3u8的格式
+            myVideo.src({
+                src: vdoSrc,
+                type: 'application/x-mpegURL' //在重新添加视频源的时候需要给新的type的值
+            })
+        } else {
+            myVideo.src(vdoSrc)
+        }
+        myVideo.load();
+        myVideo.play();
+    }
+	
+    document.querySelector('.qiehuan').addEventListener('click', function () {
+	    var src = ''+document.getElementById("videourl").value;
+        changeVideo(src);
+    })
+  </script>
+</html>
