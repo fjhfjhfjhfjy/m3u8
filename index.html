@@ -23,12 +23,12 @@
   <div align=center>
   <video id="myVideo" class="video-js vjs-default-skin" controls preload="auto" width="640" height="268" 
   data-setup='{}'>
-    <source src="[自填地址]" type="application/x-mpegURL">
+    <source src="" type="application/x-mpegURL">
   </video>
   </div>
   </br>
   <p align=center>
-  <input type="text" id="videourl" size="60" placeholder="m3u8视频链接" autocomplete="off" autofocus="">
+  <input type="text" id="videourl" size="60" placeholder="自填m3u8视频链接" autocomplete="off" autofocus="">
   </p>
   <div class="qiehuan" style="width:100px;height: 40px;background: red;margin:0 auto;line-height: 40px;color:#fff;text-align: center">加载视频
   </div>
@@ -65,6 +65,7 @@
 	
     document.querySelector('.qiehuan').addEventListener('click', function () {
 	    var src = ''+document.getElementById("videourl").value;
+	    //src为m3u8的地址.利用getelementbyid通过获取id为videourl的文本框的值,赋给src,需要带引号
         changeVideo(src);
     })
   </script>
